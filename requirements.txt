@@ -1,0 +1,9 @@
+flask
+mysql-connector-python
+MarkupSafe
+Werkzeug
+jinja2
+bcrypt
+blinker
+click
+itsdangerous
