@@ -8,6 +8,7 @@ db_config = {
     'database': 'mydb'
 }
 
+
 def get_connection():
     try:
         conn = mysql.connector.connect(**db_config)
