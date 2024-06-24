@@ -1,6 +1,6 @@
 from . import friend_bp
 from flask import request
-from src.friend import get_request, send_request, accept, decline
+from api.friend import get_request, send_request, accept, decline
 
 
 @friend_bp.route('/friend/request', methods = ["GET", "POST"])

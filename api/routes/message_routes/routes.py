@@ -1,5 +1,5 @@
 from flask import request
-from src.chat import get_message, send_message, delete_message
+from api.chat import get_message, send_message, delete_message
 from . import message_bp
 
 

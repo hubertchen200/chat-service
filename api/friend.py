@@ -1,4 +1,4 @@
-from src.utils import get_connection
+from api.utils import get_connection
 from flask import jsonify
 import json
 import datetime

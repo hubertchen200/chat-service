@@ -1,6 +1,6 @@
 from . import user_bp
 from flask import request
-from src.user import get_user, create_user, delete_user, sign_in
+from api.user import get_user, create_user, delete_user, sign_in
 
 
 @user_bp.route('/user', methods = [ 'GET', 'POST', 'DELETE'])

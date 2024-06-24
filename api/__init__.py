@@ -1,8 +1,8 @@
 from flask import Flask, request
 
-print('src init')
-from src.routes.friend_routes import friend_bp
-from src.routes.user_routes import user_bp
+print('api init')
+from api.routes.friend_routes import friend_bp
+from api.routes.user_routes import user_bp
 
 
 def create_app():
