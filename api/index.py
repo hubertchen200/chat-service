@@ -7,5 +7,5 @@ app = create_app()
 def health():
     return "ok"
 
-# if __name__ == '__main__':
-#     app.run(debug=True, port=8081, host='0.0.0.0')
+if __name__ == '__main__':
+    app.run(debug=True, port=8081, host='0.0.0.0')
