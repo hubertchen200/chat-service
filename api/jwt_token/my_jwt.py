@@ -7,14 +7,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Access the environment variables
-secret_key = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-
-print(f"SECRET_KEY: {secret_key}")
 
 
 def jwt_encode(user_id, username):
-    SECRET_KEY = '123456789'
     payload = {
         'user_id': user_id,
         'username': username,
