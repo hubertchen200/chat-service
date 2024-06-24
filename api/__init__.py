@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask
 
 print('api init')
 from api.routes.friend_routes import friend_bp
