@@ -30,6 +30,12 @@ def send_request(user_id, friend_id):
     try:
         conn = get_connection()
         cursor = conn.cursor()
+        select_query = "select * from users where id = %s"
+        select_data = (friend_id, )
+        cursor.execute(select_query, select_data)
+        row = cursor.fetchall()
+        if len(row) == 0:
+            return jsonify({"error": "failed to find friend"})
         insert_query = "insert into requests (sender, receiver) values (%s, %s)"
         insert_data = (user_id, friend_id)
         cursor.execute(insert_query, insert_data)
