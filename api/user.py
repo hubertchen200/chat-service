@@ -4,6 +4,7 @@ import bcrypt
 import json
 
 
+
 def get_user():
     conn = get_connection()
 

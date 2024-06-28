@@ -25,14 +25,13 @@ def jwt_encode(user_id, username):
 def jwt_decode(token):
     SECRET_KEY = '123456789'
     try:
-        # Decode the token
         decoded_payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-
         return decoded_payload
     except jwt.ExpiredSignatureError:
-        print("Token has expired")
+        return "TOKEN_EXPIRED"
     except jwt.InvalidTokenError:
-        print("Invalid token")
+        return "INVALID_TOKEN"
 
-jwt_decode(jwt_encode(1, "123"))
+
+print(jwt_encode(1, "123"))
 
