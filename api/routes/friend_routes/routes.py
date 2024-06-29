@@ -11,8 +11,9 @@ def my_friend():
         return jsonify({'error': "TOKEN_EXPIRED"})
     if payload == "INVALID_TOKEN":
         return jsonify({'error': 'INVALID_TOKEN'})
+
     if request.method == "GET":
-        id = request.args.get("user_id")
+        id = request.args.get("user_id", 0)
         return get_request(id)
     if request.method == "POST":
         my_request = request.get_json()
