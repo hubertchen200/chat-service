@@ -4,7 +4,7 @@ import json
 import datetime
 
 
-def get_request(user_id, token):
+def get_request(user_id):
     try:
         conn = get_connection()
         cursor = conn.cursor()
