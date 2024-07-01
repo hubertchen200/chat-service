@@ -6,6 +6,7 @@ from api.jwt_token.my_jwt import jwt_decode
 @user_bp.route('/user', methods = [ 'GET', 'POST', 'DELETE'])
 def my_user():
     token = request.headers.get('Authorization')
+    token = token.replace("Bearer ", "")
     payload = jwt_decode(token)
     if payload == "TOKEN_EXPIRED":
         return jsonify({'error':"TOKEN_EXPIRED"})
@@ -25,6 +26,7 @@ def my_user():
 @user_bp.route('/signin', methods = ['POST'])
 def my_signin():
     token = request.headers.get('Authorization')
+    token = token.replace("Bearer ", "")
     payload = jwt_decode(token)
     if payload == "TOKEN_EXPIRED":
         return jsonify({'error': "TOKEN_EXPIRED"})

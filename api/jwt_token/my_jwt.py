@@ -2,7 +2,7 @@ import jwt
 import datetime
 import os
 from dotenv import load_dotenv
-
+from flask import jsonify
 # Load the .env file
 load_dotenv()
 
@@ -20,7 +20,7 @@ def jwt_encode(user_id, username):
 
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
-    return token
+    return jsonify({"token":token})
 
 def jwt_decode(token):
     SECRET_KEY = '123456789'
@@ -33,5 +33,5 @@ def jwt_decode(token):
         return "INVALID_TOKEN"
 
 
-print(jwt_encode(1, "123"))
+
 
