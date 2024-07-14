@@ -1,13 +1,12 @@
 from flask import request, jsonify
 from api.chat import get_message, send_message, delete_message
 from . import message_bp
-from api.jwt_token.my_jwt import check_token
-from api.jwt_token.my_jwt import jwt_decode
+from hubertchen_package import my_jwt
 
 
 @message_bp.route('/message', methods = ['GET', 'POST', 'DELETE'])
 def my_message():
-    data, code = check_token(request.headers)
+    data, code = my_jwt.check_token(request.headers)
     if code == 401:
         return jsonify(data), code
     if request.method == 'GET':
