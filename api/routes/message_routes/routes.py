@@ -18,5 +18,5 @@ def my_message():
         message = request.get_json()
         return send_message(sender, message['receiver'], message['content'], '', message['is_group'])
     if request.method == "DELETE":
-        id = request.args.get("id", default = None, type = int)
+        id = request.args.get("id", default=None, type=int)
         return delete_message(id)
