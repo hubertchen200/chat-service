@@ -7,15 +7,16 @@ from hubertchen_package import my_jwt
 @message_bp.route('/message', methods = ['GET', 'POST', 'DELETE'])
 def my_message():
     data, code = my_jwt.check_token(request.headers)
+    sender = data['data']['username']
     if code == 401:
         return jsonify(data), code
     if request.method == 'GET':
-        id = request.args.get('id', default=1, type=int)
-        count = request.args.get('count', default=10, type=int)
-        return get_message(id, count)
+        receiver = request.args.get('receiver')
+        count = request.args.get('count', 1000)
+        return get_message(sender, receiver, count)
     if request.method == "POST":
         message = request.get_json()
-        return send_message(message['sender'], message['receiver'], message['content'], '', message['is_group'])
+        return send_message(sender, message['receiver'], message['content'], '', message['is_group'])
     if request.method == "DELETE":
         id = request.args.get("id", default = None, type = int)
         return delete_message(id)

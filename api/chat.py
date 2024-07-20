@@ -12,7 +12,7 @@ def send_message(sender, receiver, content, status="", is_group=False):
         user_data = (sender, receiver, content, datetime.datetime.now(), status, is_group)
         cursor.execute(insert_query, user_data)
         conn.commit()
-        return jsonify(user_data), 201
+        return jsonify({'status': 'success'}), 201
     except Exception as e:
         return jsonify({"error": f"message: {e}"})
 
@@ -20,12 +20,18 @@ def send_message(sender, receiver, content, status="", is_group=False):
 # send_message(3, 1, "Hi")
 
 
-def get_message(user_id, count):
+def get_message(sender, receiver, count):
     try:
         conn = get_connection()
         cursor = conn.cursor()
-        select_query = "select sender, receiver, content, ts from chat where receiver = %s or sender = %s order by ts desc limit %s"
-        select_data = (user_id, user_id, count)
+        select_query = """
+            SELECT sender, receiver, content, ts 
+            FROM chat 
+            WHERE (receiver = %s AND sender = %s) OR (receiver = %s AND sender = %s) 
+            ORDER BY ts DESC 
+            LIMIT """ + str(count)
+        print(select_query)
+        select_data = (receiver, sender, sender, receiver)
         cursor.execute(select_query, select_data)
         rows = cursor.fetchall()
         messages = []
