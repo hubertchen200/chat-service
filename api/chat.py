@@ -28,7 +28,7 @@ def get_message(sender, receiver, count):
             SELECT sender, receiver, content, ts 
             FROM chat 
             WHERE (receiver = %s AND sender = %s) OR (receiver = %s AND sender = %s) 
-            ORDER BY ts DESC 
+            ORDER BY ts 
             LIMIT """ + str(count)
         print(select_query)
         select_data = (receiver, sender, sender, receiver)
